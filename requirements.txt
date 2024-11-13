@@ -1,0 +1,12 @@
+fastapi~=0.115.4
+fastapi-users
+sqlalchemy~=2.0.36
+asyncpg
+databases
+bcrypt
+pydantic~=2.9.2
+uvicorn~=0.32.0
+fastapi-users-db-sqlalchemy
+pydantic-settings
+aiosqlite
+
