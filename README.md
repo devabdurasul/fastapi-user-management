@@ -7,7 +7,6 @@ A simple and efficient **FastAPI-based user management system** with **authentic
 ## Features 🚀
 
 * **User Authentication:** Register, login, and JWT-based authentication.
-* **Superuser Creation:** Automatically creates a superuser on first run.
 * **Role-based Access Control:** Manage users with roles, e.g., superuser.
 * **SQLite Database:** Uses SQLite (async) for user data storage.
 * **FastAPI:** High-performance web framework for APIs.
@@ -24,12 +23,14 @@ A simple and efficient **FastAPI-based user management system** with **authentic
 ## Setup & Installation ⚙️
 
 ### 1. Clone the Repository
-`git clone https://github.com/your-username/fastapi-user-management.git
-cd fastapi-user-management`
+`git clone https://github.com/your-username/fastapi-user-management.git` 
+
+`cd fastapi-user-management`
 
 ### 2. Create & Activate Virtual Environment
-`python3 -m venv .venv
-source .venv/bin/activate  # On Windows, use '.venv\Scripts\activate'`
+`python3 -m venv .venv`
+
+`source .venv/bin/activate  # On Windows, use '.venv\Scripts\activate'`
 
 ### 3. Install Dependencies
 `pip install -r requirements.txt`
@@ -40,15 +41,13 @@ Start the FastAPI server:
 
 `uvicorn app.main:app --reload`
 
-Access the app at http://127.0.0.1:8000.
+Access the app at http://127.0.0.1:8002.
 
 ### 5. Swagger UI 📄
 
 You can view the interactive documentation at:
 
-http://127.0.0.1:8000/docs
-
-or
+http://127.0.0.1:8002
 
 ![img.png](assets/swagger.png)
 
