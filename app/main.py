@@ -1,27 +1,38 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+
 from app.auth.routes import router as auth_router
 from app.db.base import Base
+
 from app.db.session import engine
 from contextlib import asynccontextmanager
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-# Define the lifespan context to handle startup and shutdown
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup code: create tables
+    logger.info("Creating database tables...")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    yield  # This separates startup and shutdown code
-    # Shutdown code (optional cleanup can be done here)
+    logger.info("Database tables created successfully.")
+    yield
 
-# Initialize FastAPI with the lifespan context
 app = FastAPI(docs_url='/', lifespan=lifespan)
 
-# Include the authentication router
 app.include_router(auth_router)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 if __name__ == "__main__":
     import uvicorn
 
-    # Run the app using uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8002)

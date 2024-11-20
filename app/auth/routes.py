@@ -19,13 +19,11 @@ jwt_authentication = AuthenticationBackend(
     get_strategy=get_jwt_strategy
 )
 
-# Initialize FastAPIUsers with the wrapped authentication backend
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [jwt_authentication],
 )
 
-# Define the auth router and include all routes
 router = APIRouter()
 
 router.include_router(
